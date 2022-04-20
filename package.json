@@ -1,0 +1,27 @@
+{
+  "name": "b-encode-parser",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=14"
+  },
+  "description": "A software with the objective to decode B-Encode inputs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imjqspark/b-encode-parser.git"
+  },
+  "keywords": [
+    "b-encode"
+  ],
+  "author": "Igor Marini Jaekel Quevedo (https://github.com/imjqspark)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imjqspark/b-encode-parser/issues"
+  },
+  "homepage": "https://github.com/imjqspark/b-encode-parser#readme"
+}
