@@ -1,6 +1,9 @@
 {
   "name": "b-encode-parser",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=14"
+  },
   "description": "A software with the objective to decode B-Encode inputs",
   "main": "index.js",
   "type": "module",
