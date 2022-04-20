@@ -1,10 +1,5 @@
 import { InputValidator } from "./bencode-input-validator";
-
-const INTEGER_START = 0x69 // 'i'
-const STRING_DELIM = 0x3A // ':'
-const DICTIONARY_START = 0x64 // 'd'
-const LIST_START = 0x6C // 'l'
-const END_OF_TYPE = 0x65 // 'e'
+import { STRING_DELIMITER } from '../shared/hexadecimal-codes'
 
 function getIntFromBuffer (data, start, end) {
   const PLUS_DECIMAL_CODE = 43; // '+'
@@ -13,18 +8,17 @@ function getIntFromBuffer (data, start, end) {
   const COLON_DECIMAL_CODE = 58 // ':'
   const ZERO_DECIMAL_CODE = 48 
   let sum = 0
-  let sign = 1
+  let sign = 1 // decides whether - or +
 
   for (let i = start; i < end; i++) {
     const currentIntChar = data[i]
 
     if (currentIntChar < COLON_DECIMAL_CODE && currentIntChar >= ZERO_DECIMAL_CODE) {
-      sum = sum * 10 + (currentIntChar - 48)
+      sum = sum * 10 + (currentIntChar - ZERO_DECIMAL_CODE)
       continue
     }
 
     if (i === start && currentIntChar === PLUS_DECIMAL_CODE) continue
-
     if (i === start && currentIntChar === MINUS_DECIMAL_CODE) {
       sign = -1
       continue
@@ -59,16 +53,16 @@ export class BEncodeDecoder {
   }
   
   #string() {
-    let separator = this.#findChar(STRING_DELIM);
+    let delimiter = this.#findChar(STRING_DELIMITER);
 
-    const length = getIntFromBuffer(this.#data, this.#position, separator);
-    const end = ++separator + length
+    const length = getIntFromBuffer(this.#data, this.#position, delimiter);
+    const end = ++delimiter + length
 
     // update position
     this.#position = end
 
     // slices off iterated char
-    return this.#data.slice(separator, end)
+    return this.#data.slice(delimiter, end)
   }
 
   #next() {
