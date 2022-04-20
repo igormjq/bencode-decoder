@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A software with the objective to decode B-Encode inputs",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
     "test": "test"
   },
   "repository": {
