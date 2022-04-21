@@ -11,10 +11,6 @@ describe('Services :: Decoder', () => {
   beforeEach(() => jest.clearAllMocks())
 
   describe('#decode', () => {
-    it('test', () => {
-      const decoder = makeSut();
-      decoder.decode('any');
-    })
     it('should call InputValidator with correct values', () => {
       const decoder = makeSut();
       const spyOnValidator = jest.spyOn(InputValidator.prototype, 'validate');
@@ -22,6 +18,7 @@ describe('Services :: Decoder', () => {
       decoder.decode('3:iso');
       expect(spyOnValidator).toHaveBeenCalledWith('3:iso');
     })
+
     it('should throw when InputValidator throws', () => {
       jest.spyOn(InputValidator.prototype, 'validate')
         .mockImplementationOnce(() => {
@@ -40,6 +37,29 @@ describe('Services :: Decoder', () => {
       const result = decoder.decode(input);
 
       expect(result).toEqual(expected)
+    })
+
+    describe('#integer', () => {
+      it('should decode bencoded positive integer correctly', () => {
+        const decoder = makeSut();
+        const input = 'i123e';
+        const expected = 123;
+  
+        const result = decoder.decode(input);
+  
+        expect(result).toEqual(expected)
+        expect(typeof result).toBe('number')
+      })
+  
+      it('should decode bencoded negative integer correctly', () => {
+        const decoder = makeSut();
+        const input = 'i-10e';
+        const expected = -10;
+  
+        const result = decoder.decode(input);
+  
+        expect(result).toEqual(expected)
+      })
     })
   })
 })
