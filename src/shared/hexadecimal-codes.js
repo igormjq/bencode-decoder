@@ -1,5 +1,0 @@
-export const INTEGER_START = 0x69 // 'i'
-export const STRING_DELIMITER = 0x3A // ':'
-export const DICTIONARY_START = 0x64 // 'd'
-export const LIST_START = 0x6C // 'l'
-export const END_OF_TYPE = 0x65 // 'e'

@@ -1,6 +1,7 @@
-import { BEncodeDecoder } from "./src/services/bencode-decoder";
+import { DecoderService } from "./src/services/decoder";
 
-const input = '4:spam'
-const decoder = new BEncodeDecoder();
+const input = 'li45e4:spam3:bbbe'
 
-console.log(decoder.decode(input).toString());
+const decoder = new DecoderService();
+
+console.log('decoded', decoder.decode(input))

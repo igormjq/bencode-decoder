@@ -2,7 +2,7 @@ import { InputValidator } from "./bencode-input-validator";
 import { 
   END_OF_TYPE,
   STRING_DELIMITER, 
-} from '../shared/hexadecimal-codes'
+} from '../shared/constants'
 
 export class DecoderService {
   #position = 0;
@@ -18,7 +18,7 @@ export class DecoderService {
   }
 
   #stringDecoder() {
-    let delimiter = this.#getChar(':');
+    let delimiter = this.#getChar(STRING_DELIMITER);
     const length = Number(this.#bEncoded[delimiter - 1]);
     const end = ++delimiter + length;
 
@@ -28,7 +28,7 @@ export class DecoderService {
   }
 
   #integerDecoder() {
-    const end = this.#getChar('e');
+    const end = this.#getChar(END_OF_TYPE);
     const number = this.#bEncoded.slice(this.#position + 1, end) // remove 'i' and 'e'
 
     this.#position = end + 1;
@@ -41,7 +41,7 @@ export class DecoderService {
 
     const list = [];
 
-    while(this.#bEncoded[this.#position] !== 'e') {
+    while(this.#bEncoded[this.#position] !== END_OF_TYPE) {
       list.push(this.#next());
     }
 
@@ -55,7 +55,7 @@ export class DecoderService {
 
     const result = {};
 
-    while(this.#bEncoded[this.#position] !== 'e') {
+    while(this.#bEncoded[this.#position] !== END_OF_TYPE) {
       result[this.#stringDecoder()] = this.#next();
     }
 
