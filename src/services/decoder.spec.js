@@ -110,5 +110,19 @@ describe('Services :: Decoder', () => {
         })
       })
     })
+
+    describe('#dict', () => {
+      it('should decode bencoded dict correctly', () => {
+        const decoder = makeSut();
+        const input = 'd3:cow3:moo4:spam4:eggs6:mylistli2ei3e4:testee';
+        const expected = {
+          cow: 'moo',
+          spam: 'eggs',
+          mylist: [2,3, 'test'],
+        }
+        
+        expect(decoder.decode(input)).toEqual(expected)
+      })
+    })
   })
 })
