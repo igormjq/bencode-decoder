@@ -17,6 +17,15 @@ Each of the B-Encode input has a Javascript equivalent as the following:
 | list | object | Array object |
 
 ## How to run
+Feel free to use any version of Node.js since this project relies on [Babel](https://babeljs.io/) with the most recent preset.
+
+1. Install dependencies
+
+```
+$ npm install
+```
+
+2. Start
 
 ```bash
 $ npm start
