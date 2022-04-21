@@ -1,14 +1,10 @@
 {
   "name": "b-encode-parser",
   "version": "1.0.0",
-  "engines": {
-    "node": ">=14"
-  },
   "description": "A software with the objective to decode B-Encode inputs",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "babel-node index.js",
     "test": "test"
   },
   "repository": {
@@ -23,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/imjqspark/b-encode-parser/issues"
   },
-  "homepage": "https://github.com/imjqspark/b-encode-parser#readme"
+  "homepage": "https://github.com/imjqspark/b-encode-parser#readme",
+  "dependencies": {
+    "bencode-validator": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11"
+  }
 }
