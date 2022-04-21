@@ -58,7 +58,7 @@ describe('Services :: Decoder', () => {
   
         const result = decoder.decode(input);
   
-        expect(result).toEqual(expected)
+        expect(result).toEqual(expected);
       })
     })
   })
