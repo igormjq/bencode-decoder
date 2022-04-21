@@ -6,7 +6,6 @@ import {
 
 export class DecoderService {
   #position = 0;
-  #fullLength = 0;
   #bEncoded = null;
 
   #getChar(char) {
@@ -51,12 +50,28 @@ export class DecoderService {
     return list;
   }
 
+  #dictDecoder() {
+    this.#position++;
+
+    const result = {};
+
+    while(this.#bEncoded[this.#position] !== 'e') {
+      result[this.#stringDecoder()] = this.#next();
+    }
+
+    this.#position++;
+
+    return result;
+  }
+
   #next() {
     switch(this.#bEncoded[this.#position]) {
       case 'i':
         return this.#integerDecoder();
       case 'l':
         return this.#listDecoder();
+      case 'd':
+        return this.#dictDecoder();
       default:
         return this.#stringDecoder();
     }
