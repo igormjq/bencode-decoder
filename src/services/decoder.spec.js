@@ -31,5 +31,15 @@ describe('Services :: Decoder', () => {
 
       expect(() => decoder.decode('2incorret')).toThrow();
     })
+
+    it('should decode bencoded string correctly', () => {
+      const decoder = makeSut();
+      const input = '4:spam';
+      const expected = 'spam';
+
+      const result = decoder.decode(input);
+
+      expect(result).toEqual(expected)
+    })
   })
 })
