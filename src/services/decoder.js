@@ -1,6 +1,9 @@
 import { InputValidator } from "./bencode-input-validator";
 import { 
+  DICT_START,
   END_OF_TYPE,
+  INTEGER_START,
+  LIST_START,
   STRING_DELIMITER, 
 } from '../shared/constants'
 
@@ -72,11 +75,11 @@ export class DecoderService {
 
   #next() {
     switch(this.#bEncoded[this.#position]) {
-      case 'i':
+      case INTEGER_START:
         return this.#integerDecoder();
-      case 'l':
+      case LIST_START:
         return this.#listDecoder();
-      case 'd':
+      case DICT_START:
         return this.#dictDecoder();
       default:
         return this.#stringDecoder();

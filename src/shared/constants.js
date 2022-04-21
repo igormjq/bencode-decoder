@@ -1,5 +1,5 @@
 export const INTEGER_START = 'i'
 export const STRING_DELIMITER = ':'
-export const DICTIONARY_START = 'd'
+export const DICT_START = 'd'
 export const LIST_START = 'l'
 export const END_OF_TYPE = 'e'
