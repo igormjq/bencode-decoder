@@ -29,7 +29,6 @@ export class DecoderService {
   }
 
   #integerDecoder() {
-    // i99e -> 99
     const end = this.#getChar('e');
     const number = this.#bEncoded.slice(this.#position + 1, end) // remove 'i' and 'e'
 
@@ -37,11 +36,27 @@ export class DecoderService {
 
     return Number(number) 
   }
-  
+
+  #listDecoder() {
+    this.#position++; //set pointer to next char after 'l'
+
+    const list = [];
+
+    while(this.#bEncoded[this.#position] !== 'e') {
+      list.push(this.#next());
+    }
+
+    this.#position++;
+
+    return list;
+  }
+
   #next() {
     switch(this.#bEncoded[this.#position]) {
       case 'i':
         return this.#integerDecoder();
+      case 'l':
+        return this.#listDecoder();
       default:
         return this.#stringDecoder();
     }
@@ -49,6 +64,10 @@ export class DecoderService {
   
   decode(input) {
     this.#bEncoded = input;
+    /**
+     * validate before
+     */
+
     // const isString = new RegExp(/^[1-9]:\D+/, 'g').test(input);
     // if(isString) return this.#stringDecoder(input)
 
