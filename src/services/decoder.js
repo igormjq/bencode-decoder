@@ -7,6 +7,11 @@ import {
 export class DecoderService {
   #position = 0;
   #bEncoded = null;
+  #validator;
+
+  constructor() {
+    this.#validator = new InputValidator();
+  }
 
   #getChar(char) {
     let currentPosition = this.#position
@@ -17,14 +22,15 @@ export class DecoderService {
     }
   }
 
+  //4:fera end -> 5
   #stringDecoder() {
     let delimiter = this.#getChar(STRING_DELIMITER);
     const length = Number(this.#bEncoded[delimiter - 1]);
     const end = ++delimiter + length;
 
     this.#position = end; // set pointer to current position;
-
-    return this.#bEncoded.slice(delimiter, end);
+    
+    return this.#bEncoded.slice(delimiter, end)
   }
 
   #integerDecoder() {
@@ -78,22 +84,8 @@ export class DecoderService {
   }
   
   decode(input) {
+    this.#validator.validate(input);
     this.#bEncoded = input;
-    /**
-     * validate before
-     */
-
-    // const isString = new RegExp(/^[1-9]:\D+/, 'g').test(input);
-    // if(isString) return this.#stringDecoder(input)
-
-    // const isInteger = new RegExp(/^i(-?)[1-9]\d+e/, 'g').test(input);
-    // if(isInteger) return this.#integerDecoder(input)
-
-    // const isList = new RegExp(/^l(i(-?)[1-9]\d*e)+e/, 'g').test(input);
-    // if(isList) {
-    //   this.#data = input;
-    //   return this.#listDecoder()
-    // }
 
     return this.#next();
   }
