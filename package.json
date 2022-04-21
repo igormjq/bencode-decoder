@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
-    "test": "test"
+    "test": "jest --verbose --coverage"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,9 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.11"
+    "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.4.1",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1"
   }
 }
