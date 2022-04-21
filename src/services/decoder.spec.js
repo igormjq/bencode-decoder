@@ -123,6 +123,15 @@ describe('Services :: Decoder', () => {
         
         expect(decoder.decode(input)).toEqual(expected)
       })
+
+      describe('When invalid list input', () => {
+        it('should fail for invalid bencoded list', () => {
+          const decoder = makeSut(false);
+          const missingEndOfType = 'd3:cow3:moo4:spam4:eggs';
+          
+          expect(() => decoder.decode(missingEndOfType)).toThrow();
+        })
+      })
     })
   })
 })
