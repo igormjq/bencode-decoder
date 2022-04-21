@@ -25,7 +25,6 @@ export class DecoderService {
     }
   }
 
-  //4:fera end -> 5
   #stringDecoder() {
     let delimiter = this.#getChar(STRING_DELIMITER);
     const length = Number(this.#bEncoded[delimiter - 1]);
