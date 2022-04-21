@@ -36,11 +36,12 @@ export class DecoderService {
   }
 
   #integerDecoder() {
-    try {
-      
-    } catch(error) {
+    const end = this.#getChar(END_OF_TYPE);
+    const number = this.#bEncoded.slice(this.#position + 1, end) // remove 'i' and 'e'
 
-    }
+    this.#position = end + 1;
+
+    return Number(number) 
   }
 
   #listDecoder() {
