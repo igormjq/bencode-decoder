@@ -2,6 +2,7 @@
 
 ## Motivation
 This project was first an implementation for a code challenge. Due to good feedbacks I decided to add this repo in order to improve the code and functionalities.
+The implementation is strongly inspired by the [bencode](https://www.npmjs.com/package/bencode) package.
 
 ## Goal
 The goal of this software is to accept input in [B-Encode](https://wiki.theory.org/BitTorrentSpecification#Bencoding) format, validate and decode it to a Javascript valid data type accordingly.
