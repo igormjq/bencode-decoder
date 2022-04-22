@@ -1,4 +1,4 @@
-# B-Encode Parser
+# B-Encode Decoder
 
 ## Motivation
 This project was first an implementation for a code challenge. Due to good feedbacks I decided to add this repo in order to improve the code and functionalities.
